@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArithmoAI | Math Learning</title>
+
+<style>
+:root {
+  --primary: #5856d6;
+  --primary-light: #eeeeff;
+  --text: #202747;
+  --muted: #737d98;
+  --border: #e2e6f4;
+  --bg: #f6f7fc;
+  --green: #2ba889;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  background: linear-gradient(120deg, #5856d6, #7476e9);
+  color: white;
+  padding: 24px 7%;
+}
+
+.header-inner {
+  max-width: 1050px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: #b9e5ff;
+}
+
+.header-subtitle {
+  margin: 0;
+  font-size: 13px;
+  opacity: .9;
+}
+
+.header-label {
+  font-size: 12px;
+  border: 1px solid #ffffff60;
+  border-radius: 30px;
+  padding: 8px 13px;
+}
+
+main {
+  max-width: 900px;
+  width: 92%;
+  margin: 30px auto;
+}
+
+.intro {
+  padding: 15px 3px 24px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin: 0 0 8px;
+}
+
+h1, h2, h3, p {
+  overflow-wrap: anywhere;
+}
+
+.intro h1 {
+  font-size: clamp(27px, 5vw, 38px);
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.intro p:last-child {
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 0;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px #28365d08;
+}
+
+.panel-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+  padding: 21px 23px;
+  border: none;
+  background: white;
+  color: var(--text);
+}
+
+.panel-heading:hover,
+.topic-row:hover {
+  background: #fafaff;
+}
+
+.heading-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.heading-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.heading-title {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.heading-description {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+  font-weight: normal;
+}
+
+.arrow {
+  color: var(--muted);
+  font-size: 19px;
+  transition: transform .2s;
+}
+
+.panel-heading[aria-expanded="true"] .arrow,
+.topic-row[aria-expanded="true"] .arrow {
+  transform: rotate(180deg);
+}
+
+.panel-content {
+  padding: 0 23px 24px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.concept-box {
+  background: #f5f5ff;
+  border-radius: 12px;
+  padding: 19px;
+}
+
+.concept-box h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.formula {
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.small-text {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.topic-list {
+  display: grid;
+  gap: 10px;
+}
+
+.topic-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+}
+
+.topic-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px;
+  border: none;
+  background: white;
+  text-align: left;
+  color: var(--text);
+}
+
+.topic-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #eeeeff;
+  color: var(--primary);
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.topic-icon.green {
+  background: #e2f7f0;
+  color: #25876d;
+}
+
+.topic-icon.blue {
+  background: #e4efff;
+  color: #3476d7;
+}
+
+.topic-icon.pink {
+  background: #ffedf3;
+  color: #d84e7c;
+}
+
+.topic-icon.orange {
+  background: #fff1dc;
+  color: #b77a21;
+}
+
+.topic-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.topic-name {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.topic-description {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.topic-status {
+  display: inline-block;
+  color: #25876d;
+  font-size: 10px;
+  margin-top: 5px;
+  font-weight: 700;
+}
+
+.topic-status.locked {
+  color: #8b91a6;
+}
+
+.topic-details {
+  padding: 0 14px 15px 71px;
+}
+
+.topic-details p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.primary-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-weight: 700;
+  transition: background .2s;
+}
+
+.primary-button:hover {
+  background: #4442b7;
+}
+
+.primary-button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-weight: 600;
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.level-card {
+  text-align: left;
+  padding: 17px 13px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  border-radius: 12px;
+}
+
+.level-card strong {
+  display: block;
+  font-size: 14px;
+}
+
+.level-card span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.level-card.active {
+  border: 2px solid var(--primary);
+  padding: 16px 12px;
+  background: #f6f5ff;
+}
+
+.level-card.active span {
+  color: var(--primary);
+}
+
+.task-box {
+  background: #fafaff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 19px;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 30px;
+  background: #eeeeff;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.task-question {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 19px 0;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dce0ed;
+  border-radius: 9px;
+  background: white;
+  color: var(--text);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.message {
+  margin-top: 14px;
+  padding: 12px;
+  background: #eef0ff;
+  border-radius: 9px;
+  font-size: 13px;
+  white-space: pre-line;
+}
+
+.message:empty {
+  display: none;
+}
+
+.message.success {
+  background: #e6f7ef;
+  color: #176c4d;
+}
+
+.message.error {
+  background: #fff0ee;
+  color: #a83d35;
+}
+
+.message.hint {
+  background: #fff6e4;
+  color: #795719;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 10px 0 30px;
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-label {
+    display: none;
+  }
+
+  main {
+    width: 94%;
+    margin-top: 18px;
+  }
+
+  .panel-heading {
+    padding: 16px;
+  }
+
+  .panel-content {
+    padding: 0 16px 18px;
+  }
+
+  .heading-title {
+    font-size: 16px;
+  }
+
+  .heading-icon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topic-details {
+    padding-left: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo">Arithmo<span>AI</span></div>
+      <p class="header-subtitle">Personalized Math Learning</p>
+    </div>
+    <div class="header-label">Learn · Practice · Improve</div>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <p class="eyebrow">Your personal learning space</p>
+    <h1>Learn math at your own pace.</h1>
+    <p>Choose a topic, explore the concept, and practice with tasks adapted to your level.</p>
+  </section>
+
+  <!-- STEP 1: CHOOSE TOPIC -->
+  <section class="panel">
+    <button class="panel-heading" onclick="toggleSection('topicsContent', this)"
+      aria-expanded="true">
+      <span class="heading-left">
+        <span class="heading-icon">01</span>
+        <span>
+          <span class="heading-title">Choose Your Topic</span>
+          <span class="heading-description">Select a subject to start learning.</span>
+        </span>
+      </span>
+      <span class="arrow">⌄</span>
+    </button>
+
+    <div class="panel-content" id="topicsContent">
+      <div class="topic-list">
+
+        <div class="topic-item">
+          <button class="topic-row" onclick="toggleTopic('progressionDetails', this, 'progression')"
+            aria-expanded="true">
+            <span class="topic-icon">AP</span>
+            <span class="topic-info">
+              <span class="topic-name">Arithmetic Progression</span>
+              <span class="topic-description">Sequences with a constant difference.</span>
+              <span class="topic-status">AVAILABLE</span>
+            </span>
+            <span class="arrow">⌄</span>
+          </button>
+          <div class="topic-details" id="progressionDetails">
+            <p>Learn to find the common difference and calculate terms of a sequence.</p>
+            <button class="primary-button" onclick="selectTopic('progression')">Start Learning</button>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button class="topic-row" onclick="toggleTopic('triangleDetails', this, 'triangle')"
+            aria-expanded="false">
+            <span class="topic-icon green">△</span>
+            <span class="topic-info">
+              <span class="topic-name">Area of a Triangle</span>
+              <span class="topic-description">Calculate area using base and height.</span>
+              <span class="topic-status">AVAILABLE</span>
+            </span>
+            <span class="arrow">⌄</span>
+          </button>
+          <div class="topic-details hidden" id="triangleDetails">
+            <p>Learn the area formula and solve geometry problems step by step.</p>
+            <button class="primary-button" onclick="selectTopic('triangle')">Start Learning</button>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button class="topic-row" onclick="toggleTopic('linearDetails', this)"
+            aria-expanded="false">
+            <span class="topic-icon blue">x</span>
+            <span class="topic-info">
+              <span class="topic-name">Linear Equations</span>
+              <span class="topic-description">Solve equations with one variable.</span>
+              <span class="topic-status locked">COMING SOON</span>
+            </span>
+            <span class="arrow">⌄</span>
+          </button>
+          <div class="topic-details hidden" id="linearDetails">
+            <p>This topic will be added in a future version.</p>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button class="topic-row" onclick="toggleTopic('quadraticDetails', this)"
+            aria-expanded="false">
+            <span class="topic-icon pink">x²</span>
+            <span class="topic-info">
+              <span class="topic-name">Quadratic Equations</span>
+              <span class="topic-description">Explore quadratic equations and roots.</span>
+              <span class="topic-status locked">COMING SOON</span>
+            </span>
+            <span class="arrow">⌄</span>
+          </button>
+          <div class="topic-details hidden" id="quadraticDetails">
+            <p>This topic will be added in a future version.</p>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button class="topic-row" onclick="toggleTopic('anglesDetails', this)"
+            aria-expanded="false">
+            <span class="topic-icon orange">∠</span>
+            <span class="topic-info">
+              <span class="topic-name">Angles and Triangles</span>
+              <span class="topic-description">Study angles and triangle properties.</span>
+              <span class="topic-status locked">COMING SOON</span>
+            </span>
+            <span class="arrow">⌄</span>
+          </button>
+          <div class="topic-details hidden" id="anglesDetails">
+            <p>This topic will be added in a future version.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: LEARN CONCEPT -->
+  <section class="panel">
+    <button class="panel-heading" onclick="toggleSection('conceptContent', this)"
+      aria-expanded="true">
+      <span class="heading-left">
+        <span class="heading-icon">02</span>
+        <span>
+          <span class="heading-title">Learn the Concept</span>
+          <span class="heading-description">Understand the main idea before practicing.</span>
+        </span>
+      </span>
+      <span class="arrow">⌄</span>
+    </button>
+
+    <div class="panel-content" id="conceptContent">
+      <div class="concept-box">
+        <h3 id="conceptTitle">What is an Arithmetic Progression?</h3>
+        <p id="conceptDescription">
+          An arithmetic progression is a sequence in which the difference
+          between consecutive terms is always the same.
+        </p>
+        <div class="formula" id="conceptFormula">aₙ = a₁ + (n − 1)d</div>
+        <p class="small-text" id="conceptExample">
+          Example: 2, 5, 8, 11, ... The common difference is 3.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: CHOOSE LEVEL -->
+  <section class="panel">
+    <button class="panel-heading" onclick="toggleSection('levelsContent', this)"
+      aria-expanded="true">
+      <span class="heading-left">
+        <span class="heading-icon">03</span>
+        <span>
+          <span class="heading-title">Choose Your Level</span>
+          <span class="heading-description">Choose the amount of challenge and support.</span>
+        </span>
+      </span>
+      <span class="arrow">⌄</span>
+    </button>
+
+    <div class="panel-content" id="levelsContent">
+      <div class="level-grid">
+        <button class="level-card active" onclick="chooseLevel('Foundation', this)">
+          <strong>Foundation</strong>
+          <span>Beginner · Step-by-step help</span>
+        </button>
+        <button class="level-card" onclick="chooseLevel('Standard', this)">
+          <strong>Standard</strong>
+          <span>Intermediate · School level</span>
+        </button>
+        <button class="level-card" onclick="chooseLevel('Advanced', this)">
+          <strong>Advanced</strong>
+          <span>Challenging · Multi-step tasks</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: SOLVE TASK -->
+  <section class="panel">
+    <button class="panel-heading" onclick="toggleSection('taskContent', this)"
+      aria-expanded="true">
+      <span class="heading-left">
+        <span class="heading-icon">04</span>
+        <span>
+          <span class="heading-title">Solve the Task</span>
+          <span class="heading-description">Practice, check your answer, and get help.</span>
+        </span>
+      </span>
+      <span class="arrow">⌄</span>
+    </button>
+
+    <div class="panel-content" id="taskContent">
+      <div class="task-box">
+        <div class="task-meta">
+          <span class="pill" id="topicPill">Arithmetic Progression</span>
+          <span class="pill" id="levelPill">Foundation</span>
+        </div>
+
+        <p class="task-question" id="question">
+          Find the next number: 2, 5, 8, 11, __.
+        </p>
+
+        <label class="field-label" for="answer">Your answer</label>
+        <input id="answer" type="number" step="any" placeholder="Enter your answer">
+
+        <div class="button-row">
+          <button class="primary-button" onclick="checkAnswer()">Check Answer</button>
+          <button class="secondary-button" onclick="showHint()">Get a Hint</button>
+          <button class="secondary-button" onclick="showSolution()">Show Solution</button>
+        </div>
+
+        <div class="message" id="feedback" aria-live="polite"></div>
+        <div class="message hint" id="hint"></div>
+        <div class="message" id="solution"></div>
+
+        <button class="primary-button" style="width:100%; margin-top:18px"
+          onclick="generateNewTask()">Generate New Task →</button>
+        <p class="small-text">New tasks are generated using mathematical rules.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ArithmoAI · Learn at your own pace
+  </footer>
+</main>
+
+<script>
+let currentTopic = "progression";
+let currentLevel = "Foundation";
+let currentTask = null;
+let taskNumber = 0;
+
+// Toggle a whole section open or closed.
+function toggleSection(id, button) {
+  const content = document.getElementById(id);
+  const isOpen = !content.classList.contains("hidden");
+
+  content.classList.toggle("hidden", isOpen);
+  button.setAttribute("aria-expanded", String(!isOpen));
+}
+
+// Toggle a topic row open or closed.
+function toggleTopic(id, button, topic) {
+  const details = document.getElementById(id);
+  const willOpen = details.classList.contains("hidden");
+
+  details.classList.toggle("hidden", !willOpen);
+  button.setAttribute("aria-expanded", String(willOpen));
+
+  if (willOpen && topic) {
+    selectTopic(topic);
+  }
+}
+
+// Change the displayed concept and create a task for the chosen topic.
+function selectTopic(topic) {
+  currentTopic = topic;
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("hint").textContent = "";
+  document.getElementById("solution").textContent = "";
+  document.getElementById("answer").value = "";
+
+  if (topic === "progression") {
+    document.getElementById("conceptTitle").textContent =
+      "What is an Arithmetic Progression?";
+    document.getElementById("conceptDescription").textContent =
+      "An arithmetic progression is a sequence in which the difference between consecutive terms is always the same.";
+    document.getElementById("conceptFormula").textContent =
+      "aₙ = a₁ + (n − 1)d";
+    document.getElementById("conceptExample").textContent =
+      "Example: 2, 5, 8, 11, ... The common difference is 3.";
+    document.getElementById("topicPill").textContent =
+      "Arithmetic Progression";
+  } else {
+    document.getElementById("conceptTitle").textContent =
+      "What is the Area of a Triangle?";
+    document.getElementById("conceptDescription").textContent =
+      "The area of a triangle is half the product of its base and perpendicular height.";
+    document.getElementById("conceptFormula").textContent =
+      "A = (base × height) ÷ 2";
+    document.getElementById("conceptExample").textContent =
+      "Example: base = 8 cm and height = 4 cm. Area = 8 × 4 ÷ 2 = 16 cm².";
+    document.getElementById("topicPill").textContent =
+      "Area of a Triangle";
+  }
+
+  generateNewTask();
+
+  document.getElementById("conceptContent").classList.remove("hidden");
+  document.getElementById("taskContent").classList.remove("hidden");
+}
+
+function chooseLevel(level, button) {
+  currentLevel = level;
+
+  document.querySelectorAll(".level-card").forEach(function(card) {
+    card.classList.remove("active");
+  });
+
+  button.classList.add("active");
+  document.getElementById("levelPill").textContent = level;
+  generateNewTask();
+}
+
+// Generate a new problem using arithmetic rules.
+// Later, this function can call a secure Gemini backend.
+async function generateNewTask() {
+  taskNumber++;
+
+  const questionElement = document.getElementById("question");
+  const feedback = document.getElementById("feedback");
+
+  questionElement.textContent = "Gemini is creating a new task...";
+  feedback.textContent = "";
+  document.getElementById("hint").textContent = "";
+  document.getElementById("solution").textContent = "";
+  document.getElementById("answer").value = "";
+  document.getElementById("levelPill").textContent = currentLevel;
+
+  const topicName = currentTopic === "progression"
+    ? "Arithmetic Progression"
+    : "Area of a Triangle";
+
+  const prompt = `
+Create ONE new mathematics exercise for ArithmoAI.
+
+Topic: ${topicName}
+Difficulty: ${currentLevel}
+
+Difficulty rules:
+- Foundation: simple calculations and basic concepts.
+- Standard: apply a formula to solve a problem.
+- Advanced: a multi-step problem requiring reasoning.
+
+Return ONLY one valid JSON object, without Markdown.
+Use exactly these four fields:
+{
+  "question": "The exercise for the student",
+  "answer": 12,
+  "hint": "A helpful hint without giving away the answer",
+  "solution": "A correct step-by-step explanation"
+}
+
+The answer must be a number, not text.
+For triangle area, give the numerical area in square centimetres.
+Check all calculations carefully.
+`;
+
+  try {
+    const response = await fetch(
+      "https://arithmoai-api.akonai07sman.workers.dev/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: prompt })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.answer) {
+  console.error("Worker response:", data);
+  throw new Error(
+    data.details || data.error || ("HTTP " + response.status)
+  );
+}
+
+    const cleanText = data.answer
+      .replace(/```json/gi, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const task = JSON.parse(cleanText);
+
+    if (
+      typeof task.question !== "string" ||
+      typeof task.hint !== "string" ||
+      typeof task.solution !== "string" ||
+      !Number.isFinite(Number(task.answer)) ||
+      task.question.trim() === ""
+    ) {
+      throw new Error("Invalid task returned by AI");
+    }
+
+    task.answer = Number(task.answer);
+    currentTask = task;
+
+    questionElement.textContent = task.question;
+    feedback.textContent = "New task generated by Gemini AI.";
+    feedback.className = "message";
+  
+  } catch (error) {
+    console.error("Gemini error:", error);
+
+    currentTask = currentTopic === "progression"
+      ? makeProgressionTask()
+      : makeTriangleTask();
+
+    questionElement.textContent = currentTask.question;
+    feedback.className = "message error";
+    feedback.textContent =
+      "Gemini error: " + error.message +
+      ". Showing a rule-based task instead.";
+  }
+}
+
+function makeProgressionTask() {
+  let a, d, n, answer, question, hint, solution;
+
+  if (currentLevel === "Foundation") {
+    d = randomInt(2, 8);
+    a = randomInt(1, 12);
+    answer = a + 3 * d;
+
+    question = "Find the next number: " +
+      a + ", " + (a+d) + ", " + (a+2*d) + ", " +
+      (a+3*d) + ", __.";
+
+    hint = "Find how much each term increases. Add that difference to the last term.";
+    solution = "The common difference is " + d +
+      ". Add it to the last term: " + (a+3*d) +
+      " + " + d + " = " + answer + ".";
+  } else if (currentLevel === "Standard") {
+    a = randomInt(2, 15);
+    d = randomInt(2, 7);
+    n = randomInt(6, 15);
+    answer = a + (n-1)*d;
+
+    question = "Find the " + n + "th term of an arithmetic progression with a₁ = " +
+      a + " and d = " + d + ".";
+
+    hint = "Use aₙ = a₁ + (n − 1)d. Substitute the given values.";
+    solution = "a" + n + " = " + a + " + (" + n +
+      " − 1) × " + d + " = " + a + " + " +
+      ((n-1)*d) + " = " + answer + ".";
+  } else {
+    d = randomInt(2, 6);
+    a = randomInt(1, 12);
+    let k = randomInt(3, 6);
+    let m = k + randomInt(2, 4);
+    let ak = a + (k-1)*d;
+    let am = a + (m-1)*d;
+    answer = a;
+
+    question = "An arithmetic progression has a" + k + " = " +
+      ak + " and a" + m + " = " + am +
+      ". Find the first term a₁.";
+
+    hint = "First find d using (a" + m + " − a" + k +
+      ") ÷ (" + m + " − " + k + "). Then find a₁.";
+
+    solution = "d = (" + am + " − " + ak + ") ÷ (" +
+      m + " − " + k + ") = " + d +
+      ". Then a₁ = a" + k + " − (" + k +
+      " − 1) × " + d + " = " + answer + ".";
+  }
+
+  return {question, answer, hint, solution};
+}
+
+function makeTriangleTask() {
+  let b, h, answer, question, hint, solution;
+
+  if (currentLevel === "Foundation") {
+    b = randomInt(2, 10) * 2;
+    h = randomInt(2, 8) * 2;
+    answer = b * h / 2;
+
+    question = "A triangle has a base of " + b +
+      " cm and a height of " + h +
+      " cm. Find its area in cm².";
+
+    hint = "Use A = (base × height) ÷ 2.";
+    solution = "A = (" + b + " × " + h + ") ÷ 2 = " +
+      answer + " cm².";
+  } else if (currentLevel === "Standard") {
+    b = randomInt(3, 15);
+    h = randomInt(2, 12);
+    answer = b * h / 2;
+
+    question = "Find the area of a triangle with base " +
+      b + " cm and perpendicular height " + h + " cm.";
+
+    hint = "Multiply the base by the height, then divide by 2.";
+    solution = "A = (" + b + " × " + h + ") ÷ 2 = " +
+      answer + " cm².";
+  } else {
+    b = randomInt(4, 14);
+    h = randomInt(3, 10);
+    let scale = randomInt(2, 4);
+    let newB = b * scale;
+    let newH = h * scale;
+    answer = newB * newH / 2;
+
+    question = "A triangle has base " + b + " cm and height " +
+      h + " cm. Both measurements are multiplied by " +
+      scale + ". Find the new area in cm².";
+
+    hint = "Calculate the new base and height first. Then use A = bh ÷ 2.";
+    solution = "New base = " + b + " × " + scale + " = " +
+      newB + " cm. New height = " + h + " × " + scale +
+      " = " + newH + " cm. Area = (" + newB + " × " +
+      newH + ") ÷ 2 = " + answer + " cm².";
+  }
+
+  return {question, answer, hint, solution};
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function checkAnswer() {
+  const input = document.getElementById("answer");
+  const feedback = document.getElementById("feedback");
+
+  if (input.value.trim() === "") {
+    feedback.className = "message error";
+    feedback.textContent = "Please enter an answer first.";
+    return;
+  }
+
+  const value = Number(input.value);
+  const correct = Math.abs(value - currentTask.answer) < 0.000001;
+
+  if (correct) {
+    feedback.className = "message success";
+    feedback.textContent = "Correct! Well done. Your answer is right.";
+  } else {
+    feedback.className = "message error";
+
+    if (currentLevel === "Foundation") {
+      feedback.textContent =
+        "Not quite. Try again. Use the hint to help you.";
+    } else {
+      feedback.textContent =
+        "Not quite. Check your formula and calculations, then try again.";
+    }
+  }
+}
+
+function showHint() {
+  document.getElementById("hint").textContent =
+    "Hint: " + currentTask.hint;
+}
+
+function showSolution() {
+  let explanation;
+
+  if (currentLevel === "Foundation") {
+    explanation = "Let's solve it step by step. " + currentTask.solution;
+  } else if (currentLevel === "Standard") {
+    explanation = "Apply the correct formula. " + currentTask.solution;
+  } else {
+    explanation = "Advanced reasoning: " + currentTask.solution;
+  }
+
+  document.getElementById("solution").textContent =
+    "Solution: " + explanation;
+}
+
+// Future Gemini integration point:
+// Send the selected topic, level and question to a secure backend.
+// Keep the API key on the server, never in this public HTML file.
+
+generateNewTask();
+</script>
+
+</body>
+</html>
